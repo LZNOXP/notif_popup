@@ -1,12 +1,3 @@
-// const closeNotif = (identifier) => {
-//     //why is identifier not a string?
-//     console.log("identifier", identifier);
-//     identifier.classList.add("remove-notif");
-//     setTimeout(() => { identifier.remove() }, 1000)
-//     // const element = document.querySelector(`#${identifier}`);
-//     // console.log("element", element);
-// };
-
 const createNotif = (
     title = "Sample Title",
     content = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, consequatur officiis iure pariatur maxime natus beatae officia distinctio doloribus modi?",
@@ -42,41 +33,8 @@ const createNotif = (
     }
 };
 
-const randomParagraph = () => {
-    const paragraphs = [
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, consequatur officiis iure pariatur maxime natus beatae officia distinctio doloribus modi?",
-        "Ipsum, consequatur officiis iure pariatur maxime natus beatae officia distinctio doloribus modi?",
-        "Lorem ipsum dolor sit amet",
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, consequatur officiis iure pariatur maxime natus beatae officia distinctio doloribus modi?",
-    ];
-    const random = getRandomNumber(0, paragraphs.length - 1);
-    return paragraphs[random];
-}
-
-const getRandomNumber = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-let counter = 0;
-let randomNum = getRandomNumber(2, 10);
-// setInterval(() => {
-//     randomNum = getRandomNumber(2, 10);
-//     counter++;
-//     createNotif(`Title ${randomNum * 200}`, randomParagraph());
-// }, 200 * randomNum);
 createNotif();
 createNotif();
 createNotif();
 createNotif();
 createNotif();
-// const addNotif = () => {
-//     counter++;
-//     const notifContainer = document.querySelector(".notif-container");
-
-//     notifContainer.append(notification);
-//     setTimeout(() => {
-//         notification.classList.add("remove-notif");
-//         // notification.remove();
-//     }, 3000);
-// };
-// addNotif();
-// setInterval(addNotif, 2000);
