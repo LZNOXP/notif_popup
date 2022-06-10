@@ -4,7 +4,13 @@ body {
     font-family: "Infer", sans-serif;
     background-color: #191919;
 }
-
+input{
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3rem;
+}
 .notif-container {
     position: fixed;
     right: 0;

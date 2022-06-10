@@ -1,34 +1,29 @@
 const createNotif = (
     title = "Sample Title",
-    content = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, consequatur officiis iure pariatur maxime natus beatae officia distinctio doloribus modi?",
+    content = "Sample Content",
     autoClose = true,
     time = 3000
 ) => {
     const identifier =
         Math.random().toString(36).substring(2, 15) +
         Math.random().toString(36).substring(2, 15);
-    const notification = `
-    <div class="notif" id="${identifier}">
-        <div class="notif-header">
-            <div class="notif-title">${title}</div>
-            <div class="notif-close">&#x2715</div>
-        </div>
-        <div class="notif-content">${content}</div>
+    const notification = document.createElement("div");
+    notification.classList.add("notif");
+    notification.id = identifier;
+    notification.innerHTML = `
+    <div class="notif-header">
+        <div class="notif-title">${title}</div>
+        <div class="notif-close">&#x2715</div>
     </div>
-    `;
+    <div class="notif-content">${content}</div>
+    `
     document
         .querySelector(".notif-container")
-        .insertAdjacentHTML("beforeend", notification);
-    const notifEl = document.getElementById(`${identifier}`)
-    const notifClose = notifEl.querySelector(".notif-close")
+        .append(notification)
+    const notifClose = notification.querySelector(".notif-close")
     notifClose.addEventListener("click", closeNotif)
     if (autoClose) {
-        setTimeout(() => {
-            const el = document.getElementById(`${identifier}`);
-            if (!el) return;
-            el.classList.add("remove-notif");
-            setTimeout(() => { el.remove() }, 1000)
-        }, time);
+        setTimeout(() => notifClose.click(), time);
     }
 };
 
@@ -36,21 +31,15 @@ const closeNotif = e => {
     const el = e.currentTarget.parentElement.parentElement;
     el.classList.add("remove-notif");
     setTimeout(() => { el.remove() }, 1000)
-
-    const allNotif = document.querySelectorAll(".notif");
-    allNotif.forEach(notif => {
-        if (notif === el) return;
-        notif.classList.add("slide-down");
-    })
 }
 
 const paragraphs = [
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, consequatur officiis iure pariatur maxime natus beatae officia distinctio doloribus modi?",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, consequatur officiis iure pariatur maxime natus beatae officia distinctio doloribus modi?",
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, consequatur officiis iure pariatur maxime natus beatae officia distinctio doloribus modi?"
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at blandit orci, at lobortis ipsum. Nulla nisl ex, ultrices ornare tempus ac, semper ut est",
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at blandit orci, at lobortis ipsum. Nulla nisl ex, ultrices ornare tempus ac, semper ut est. Nunc blandit mauris massa, vitae consectetur mi gravida ut. Curabitur varius nisi sit amet bibendum gravida. Maecenas vel rhoncus enim. Donec non tortor lacus. Duis eu dictum lorem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus",
 ]
 createNotif("Title", paragraphs[0], false);
-createNotif("Title", paragraphs[0], false);
-createNotif("Title", paragraphs[0], false);
-createNotif("Title", paragraphs[0], false);
+createNotif("Title", paragraphs[2], false);
+createNotif("Title", paragraphs[1], false);
+createNotif();
 createNotif("Title", paragraphs[0], false);
