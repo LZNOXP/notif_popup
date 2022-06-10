@@ -13,6 +13,10 @@ input {
     font-size: 3rem;
 }
 
+input:active{
+    background-color: #191919;
+}
+
 .notif-container {
     position: fixed;
     right: 0;
@@ -30,9 +34,10 @@ input {
     border-radius: 5px;
     min-width: 10rem;
     max-width: 30rem;
-    width: fit-content;
+    /* width: fit-content; */
     /* bounce */
     animation: slidein 0.5s forwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: all;
     transform: translateX(50%);
     margin: 10px;
     border: 1px solid #606468;
@@ -71,11 +76,13 @@ input {
 
 @keyframes slideout {
     from {
+        max-height: var(--height);
         transform: translateX(0%);
         opacity: 1;
     }
 
     to {
+        max-height: 0px;
         transform: translateX(100%);
         opacity: 0;
     }
