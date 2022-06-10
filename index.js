@@ -2,7 +2,7 @@ const createNotif = (
     title = "Sample Title",
     content = "Sample Content",
     autoClose = true,
-    time = 3000
+    time = 2000
 ) => {
     const identifier =
         Math.random().toString(36).substring(2, 15) +
@@ -17,11 +17,16 @@ const createNotif = (
     </div>
     <div class="notif-content">${content}</div>
     `
-    document
-        .querySelector(".notif-container")
-        .append(notification)
+    document.querySelector(".notif-container").append(notification)
+
     const notifClose = notification.querySelector(".notif-close")
     notifClose.addEventListener("click", closeNotif)
+
+    setTimeout(() => {
+        const height = notification.clientHeight;
+        notification.style = `--height: ${height}px`;
+    }, 50)
+
     if (autoClose) {
         setTimeout(() => notifClose.click(), time);
     }
@@ -41,5 +46,5 @@ const paragraphs = [
 createNotif("Title", paragraphs[0], false);
 createNotif("Title", paragraphs[2], false);
 createNotif("Title", paragraphs[1], false);
-createNotif();
+createNotif("Title", paragraphs[0], true, 3000);
 createNotif("Title", paragraphs[0], false);
