@@ -13,7 +13,7 @@ input {
     font-size: 3rem;
 }
 
-input:active{
+input:active {
     background-color: #191919;
 }
 
@@ -46,6 +46,28 @@ input:active{
 
 }
 
+.notif.with-timer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 100%;
+    background-color: aqua;
+    animation: progress var(--time) forwards;
+}
+
+@keyframes progress {
+    from {
+        height: 100%;
+    }
+
+    to {
+        height: 0%;
+    }
+}
+
+
 .notif-header {
     display: flex;
     justify-content: space-between;
@@ -72,6 +94,8 @@ input:active{
 
 .remove-notif {
     animation: slideout 0.5s forwards;
+    padding: 0;
+    margin: 0;
 }
 
 @keyframes slideout {

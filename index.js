@@ -9,6 +9,10 @@ const createNotif = (
         Math.random().toString(36).substring(2, 15);
     const notification = document.createElement("div");
     notification.classList.add("notif");
+    if (autoClose) {
+        notification.classList.add("with-timer");
+        notification.style = `--time: ${time}ms;`;
+    }
     notification.id = identifier;
     notification.innerHTML = `
     <div class="notif-header">
@@ -24,8 +28,10 @@ const createNotif = (
 
     setTimeout(() => {
         const height = notification.clientHeight;
-        notification.style = `--height: ${height}px`;
-    }, 50)
+        const actualheight = height - 40;//40 total padding + margin
+        const currentStyle = notification.getAttribute("style") || "";
+        notification.setAttribute("style", `${currentStyle}--height: ${actualheight}px;`);
+    }, 1000)
 
     if (autoClose) {
         setTimeout(() => notifClose.click(), time);
