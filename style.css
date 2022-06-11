@@ -49,12 +49,13 @@ input:active {
 .notif.with-timer::after {
     content: "";
     position: absolute;
-    top: 0;
+    bottom: 0;
     right: 0;
-    width: 10px;
+    width: 2px;
+    border-radius: 1px;
     height: 100%;
-    background-color: aqua;
-    animation: progress var(--time) forwards;
+    background-color: #606468;
+    animation: progress var(--time) forwards linear;
 }
 
 @keyframes progress {
